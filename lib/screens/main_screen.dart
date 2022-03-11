@@ -12,7 +12,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late final PageController _pageController;
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   String _appBarTitle = "Accueil";
 
   @override

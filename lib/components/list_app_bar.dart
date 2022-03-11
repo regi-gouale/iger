@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ListAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -20,15 +21,17 @@ class _ListAppBarState extends State<ListAppBar> {
   late bool search = false;
 
   Widget _searchTextField(String title) {
-    return const TextField(
+    return TextField(
       autofocus: true,
       cursorColor: Colors.white,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 20,
+      style: GoogleFonts.comfortaa(
+        textStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+        ),
       ),
       textInputAction: TextInputAction.search,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.white,
@@ -40,9 +43,7 @@ class _ListAppBarState extends State<ListAppBar> {
           ),
         ),
         hintText: "Rechercher",
-        hintStyle: TextStyle(
-          color: Colors.white60
-        ),
+        hintStyle: TextStyle(color: Colors.white60),
       ),
     );
   }
@@ -66,8 +67,10 @@ class _ListAppBarState extends State<ListAppBar> {
       title: !search
           ? Text(
               widget.title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
+              style: GoogleFonts.comfortaa(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             )
           : _searchTextField(widget.title),
