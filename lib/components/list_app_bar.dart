@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ListAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
+
   const ListAppBar({
     Key? key,
     required this.title,
@@ -13,10 +14,39 @@ class ListAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   final Size preferredSize;
-  // Size get preferredSize => throw UnimplementedError();
 }
 
 class _ListAppBarState extends State<ListAppBar> {
+  late bool search = false;
+
+  Widget _searchTextField(String title) {
+    return const TextField(
+      autofocus: true,
+      cursorColor: Colors.white,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
+      textInputAction: TextInputAction.search,
+      decoration: InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        hintText: "Rechercher",
+        hintStyle: TextStyle(
+          color: Colors.white60
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -33,20 +63,39 @@ class _ListAppBarState extends State<ListAppBar> {
           ),
         ),
       ),
-      title: Text(
-        widget.title,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.search_rounded,
-          ),
-        ),
-      ],
+      title: !search
+          ? Text(
+              widget.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          : _searchTextField(widget.title),
+      actions: !search
+          ? [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    search = true;
+                  });
+                },
+                icon: const Icon(
+                  Icons.search_rounded,
+                ),
+              ),
+            ]
+          : [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    search = false;
+                  });
+                },
+                icon: const Icon(
+                  Icons.clear_rounded,
+                ),
+              ),
+            ],
     );
   }
 }
