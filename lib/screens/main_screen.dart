@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iger/components/list_app_bar.dart';
 import 'package:iger/screens/views/home_view.dart';
 import 'package:iger/screens/views/list_tasks_view.dart';
 
@@ -12,6 +13,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   late final PageController _pageController;
   int _currentIndex = 0;
+  String _appBarTitle = "Accueil";
 
   @override
   void initState() {
@@ -28,22 +30,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(
-          Icons.account_circle_outlined,
-          size: 30.0,
-        ),
-        title: const Text(
-          "Accueil",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: ListAppBar(title: _appBarTitle),
       body: PageView(
         onPageChanged: (index) {
           setState(() {
             _currentIndex = index;
+            _appBarTitle = index == 1 ? "Mes listes" : "Accueil";
           });
         },
         controller: _pageController,
