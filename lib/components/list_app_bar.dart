@@ -24,7 +24,7 @@ class _ListAppBarState extends State<ListAppBar> {
     return TextField(
       autofocus: true,
       cursorColor: Colors.white,
-      style: GoogleFonts.comfortaa(
+      style: GoogleFonts.lato(
         textStyle: const TextStyle(
           color: Colors.white,
           fontSize: 20,
@@ -67,9 +67,10 @@ class _ListAppBarState extends State<ListAppBar> {
       title: !search
           ? Text(
               widget.title,
-              style: GoogleFonts.comfortaa(
+              style: GoogleFonts.lato(
                 textStyle: const TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontSize: 22,
                 ),
               ),
             )

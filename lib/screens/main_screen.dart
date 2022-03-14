@@ -31,33 +31,55 @@ class _MainScreenState extends State<MainScreen> {
 
   void _modal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Column(
-            children: <Widget>[
-              Padding(
+      context: context,
+      builder: (context) {
+        return Wrap(
+          children: <Widget>[
+            Center(
+              child: Padding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 10.0,
                 ),
                 child: Text(
                   "Créer",
-                  style: GoogleFonts.comfortaa(),
+                  style: GoogleFonts.lato(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              // ListView.builder(
-              //   itemBuilder: (context, index) {
-              //     return ListTile(
-              //       leading: const Icon(Icons.local_pharmacy_outlined),
-              //       title: Text(
-              //         "Créer une nouvelle liste de tâches",
-              //         style: GoogleFonts.comfortaa(),
-              //       ),
-              //     );
-              //   },
-              // ),
-            ],
-          );
-        });
+            ),
+            ListTile(
+              leading: const Icon(Icons.task_rounded),
+              title: const Text("Créer une procédure"),
+              onTap: () {
+                print("Nouvelle procédure");
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.task_alt_rounded),
+              title: const Text("Créer une liste de tâches"),
+              onTap: () {
+                print("Nouvelle liste de tâches");
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: ListTile(
+                leading: const Icon(Icons.edit_rounded),
+                title: const Text("Modifier"),
+                onTap: () {
+                  print("Modifier");
+                },
+              ),
+            ),
+          ],
+        );
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+    );
   }
 
   @override
@@ -83,16 +105,17 @@ class _MainScreenState extends State<MainScreen> {
           _pageController.jumpToPage(index);
           _currentIndex = index;
         },
+        elevation: 10.0,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.home_rounded,
             ),
             label: "Accueil",
           ),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.list_alt_outlined,
+                Icons.list_rounded,
               ),
               label: "Mes listes"),
         ],
