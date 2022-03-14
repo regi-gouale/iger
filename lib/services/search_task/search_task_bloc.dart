@@ -7,7 +7,6 @@ part 'search_task_state.dart';
 class SearchTaskBloc extends Bloc<SearchTaskEvent, SearchTaskState> {
   SearchTaskBloc() : super(SearchTaskInitial()) {
     on<SearchTaskEvent>((event, emit) {
-      // TODO: implement event handler
     });
   }
 }

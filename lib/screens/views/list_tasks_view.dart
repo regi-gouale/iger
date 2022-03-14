@@ -2,33 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const List<Map<String, dynamic>> tasksList = [
-  // {
-  //   "title": "Premières tâches",
-  //   "type": "task",
-  //   "items": [
-  //     "Manger",
-  //     "Travailler",
-  //   ],
-  //   "due-date": "20/03/2022",
-  // },
-  // {
-  //   "title": "Deuxièmes tâches",
-  //   "type": "task",
-  //   "items": [
-  //     "Manger",
-  //     "Travailler",
-  //   ],
-  //   "due-date": "20/03/2022",
-  // },
-  // {
-  //   "title": "Troisièmes tâches",
-  //   "type": "task",
-  //   "items": [
-  //     "Manger",
-  //     "Travailler",
-  //   ],
-  //   "due-date": "20/03/2022",
-  // }
+  {
+    "title": "Premières tâches",
+    "type": "task",
+    "items": [
+      "Manger",
+      "Travailler",
+    ],
+    "due-date": "20/03/2022",
+  },
+  {
+    "title": "Deuxièmes tâches",
+    "type": "task",
+    "items": [
+      "Manger",
+      "Travailler",
+    ],
+    "due-date": "20/03/2022",
+  },
+  {
+    "title": "Troisièmes tâches",
+    "type": "task",
+    "items": [
+      "Manger",
+      "Travailler",
+    ],
+    "due-date": "20/03/2022",
+  }
 ];
 
 class ListTasksView extends StatelessWidget {

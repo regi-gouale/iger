@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iger/components/list_app_bar.dart';
 import 'package:iger/screens/views/home_view.dart';
 import 'package:iger/screens/views/list_tasks_view.dart';
@@ -12,6 +13,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late final PageController _pageController;
+
   int _currentIndex = 1;
   String _appBarTitle = "Accueil";
 
@@ -25,6 +27,37 @@ class _MainScreenState extends State<MainScreen> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _modal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                ),
+                child: Text(
+                  "Créer",
+                  style: GoogleFonts.comfortaa(),
+                ),
+              ),
+              // ListView.builder(
+              //   itemBuilder: (context, index) {
+              //     return ListTile(
+              //       leading: const Icon(Icons.local_pharmacy_outlined),
+              //       title: Text(
+              //         "Créer une nouvelle liste de tâches",
+              //         style: GoogleFonts.comfortaa(),
+              //       ),
+              //     );
+              //   },
+              // ),
+            ],
+          );
+        });
   }
 
   @override
@@ -65,7 +98,9 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _modal(context);
+        },
         child: const Icon(
           Icons.add,
           size: 40.0,
