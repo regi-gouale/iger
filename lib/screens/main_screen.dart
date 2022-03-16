@@ -3,9 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iger/components/list_app_bar.dart';
 import 'package:iger/screens/views/home_view.dart';
 import 'package:iger/screens/views/list_tasks_view.dart';
+import 'package:sqflite/sqflite.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final Future<Database> database;
+  const MainScreen({
+    Key? key,
+    required this.database,
+  }) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -76,8 +81,11 @@ class _MainScreenState extends State<MainScreen> {
           ],
         );
       },
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30.0),
+          topRight: Radius.circular(30.0),
+        ),
       ),
     );
   }
@@ -94,9 +102,11 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         controller: _pageController,
-        children: const <Widget>[
-          HomeView(),
-          ListTasksView(),
+        children: <Widget>[
+          const HomeView(),
+          ListTasksView(
+            database: widget.database,
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

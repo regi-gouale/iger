@@ -4,6 +4,7 @@ import 'package:iger/repositories/task_repository.dart';
 import 'package:iger/screens/main_screen.dart';
 import 'package:iger/services/add_task/add_task_bloc.dart';
 import 'package:iger/services/delete_task/delete_task_bloc.dart';
+import 'package:iger/services/list_task/list_task_bloc.dart';
 import 'package:iger/services/search_task/search_task_bloc.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -29,14 +30,16 @@ Future<void> main() async {
 
   runApp(IgerApp(
     taskRepository: taskRepository,
+    database: database,
   ));
 }
 
 class IgerApp extends StatelessWidget {
   final TaskRepository taskRepository;
+  final Future<Database> database;
   const IgerApp({
     Key? key,
-    required this.taskRepository,
+    required this.taskRepository, required this.database,
   }) : super(key: key);
 
   @override
@@ -58,6 +61,11 @@ class IgerApp extends StatelessWidget {
             taskRepository: taskRepository,
           ),
         ),
+        BlocProvider<ListTaskBloc>(
+          create: (context) => ListTaskBloc(
+            taskRepository: taskRepository,
+          ),
+        ),
       ],
       child: MaterialApp(
         title: 'iGer',
@@ -72,7 +80,7 @@ class IgerApp extends StatelessWidget {
           ),
           primarySwatch: Colors.green,
         ),
-        home: const MainScreen(),
+        home: MainScreen(database: database,),
         debugShowCheckedModeBanner: false,
       ),
     );

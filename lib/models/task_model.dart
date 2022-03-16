@@ -11,7 +11,7 @@ class TaskModel {
   final DateTime dueDate;
   final String status;
 
-  TaskModel( {
+  TaskModel({
     required this.id,
     required this.title,
     required this.type,
@@ -44,7 +44,7 @@ class TaskModel {
       title: data["title"],
       items: data["items"],
       type: data["type"],
-      dueDate: data["dueDate"], 
+      dueDate: data["dueDate"],
       status: data["status"],
     );
 
@@ -72,5 +72,14 @@ class TaskModel {
   }) async {
     final db = await database;
     return await db.query("tasks");
+  }
+
+  static Future<void> updateTaskInDatabase({
+    required Future<Database> database,
+    required String id,
+    String title = "",
+  }) async {
+    final db = await database;
+    await db.update("tasks", {"title": title}, where: 'id = ?', whereArgs: [id]);
   }
 }
