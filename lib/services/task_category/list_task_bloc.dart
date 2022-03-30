@@ -7,27 +7,27 @@ import 'package:meta/meta.dart';
 part 'list_task_event.dart';
 part 'list_task_state.dart';
 
-class ListTaskBloc extends Bloc<ListTaskEvent, ListTaskState> {
+class TaskCategoryBloc extends Bloc<TaskCategoryEvent, TaskCategoryState> {
   final TaskRepository taskRepository;
 
-  ListTaskBloc({required this.taskRepository})
+  TaskCategoryBloc({required this.taskRepository})
       : super(
-          ListTaskInitialState(
+          TaskCategoryInitialState(
             taskModel: List<TaskModel>.from([]),
           ),
         ) {
     taskRepository.tasks.listen((tasks) {
-      add(_OnTaskUpdatedListTaskEvent(tasks: tasks));
+      add(_OnTaskUpdatedTaskCategoryEvent(tasks: tasks));
     });
 
-    on<OnInitializeListTaskEvent>((event, emit) async {
+    on<OnInitializeTaskCategoryEvent>((event, emit) async {
       await taskRepository.initialize();
     });
 
-    on<_OnTaskUpdatedListTaskEvent>(
+    on<_OnTaskUpdatedTaskCategoryEvent>(
       (event, emit) {
         emit(
-          ListTaskInitialState(
+          TaskCategoryInitialState(
             taskModel: event.tasks,
           ),
         );

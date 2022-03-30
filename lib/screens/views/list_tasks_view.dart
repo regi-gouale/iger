@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iger/models/task_model.dart';
 import 'package:iger/services/delete_task/delete_task_bloc.dart';
-import 'package:iger/services/list_task/list_task_bloc.dart';
+import 'package:iger/services/task_category/list_task_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ListTasksView extends StatelessWidget {
@@ -18,12 +18,12 @@ class ListTasksView extends StatelessWidget {
           print("delete");
         }
       },
-      child: BlocConsumer<ListTaskBloc, ListTaskState>(
+      child: BlocConsumer<TaskCategoryBloc, TaskCategoryState>(
         listener: (context, state) {},
         builder: ((context, state) {
           List<TaskModel> tasksModel = [];
 
-          if (state is ListTaskInitialState) {
+          if (state is TaskCategoryInitialState) {
             tasksModel = state.taskModel;
           }
           return tasksModel.isEmpty

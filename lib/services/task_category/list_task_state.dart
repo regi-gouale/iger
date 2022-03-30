@@ -1,17 +1,17 @@
 part of 'list_task_bloc.dart';
 
 @immutable
-abstract class ListTaskState extends Equatable {
-  const ListTaskState();
+abstract class TaskCategoryState extends Equatable {
+  const TaskCategoryState();
 
   @override
   List<Object?> get props => [];
 }
 
-class ListTaskInitialState extends ListTaskState {
+class TaskCategoryInitialState extends TaskCategoryState {
   final List<TaskModel> taskModel;
 
-  const ListTaskInitialState({
+  const TaskCategoryInitialState({
     required this.taskModel,
   });
 

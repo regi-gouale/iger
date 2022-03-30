@@ -4,8 +4,9 @@ import 'package:iger/repositories/task_repository.dart';
 import 'package:iger/screens/main_screen.dart';
 import 'package:iger/services/add_task/add_task_bloc.dart';
 import 'package:iger/services/delete_task/delete_task_bloc.dart';
-import 'package:iger/services/list_task/list_task_bloc.dart';
-import 'package:iger/services/search_task/search_task_bloc.dart';
+import 'package:iger/services/task_category/list_task_bloc.dart';
+import 'package:iger/services/search/search_bloc.dart';
+import 'package:iger/utils/iger_theme.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -51,8 +52,8 @@ class IgerApp extends StatelessWidget {
             taskRepository: taskRepository,
           ),
         ),
-        BlocProvider<SearchTaskBloc>(
-          create: (context) => SearchTaskBloc(
+        BlocProvider<SearchBloc>(
+          create: (context) => SearchBloc(
             taskRepository: taskRepository,
           ),
         ),
@@ -61,8 +62,8 @@ class IgerApp extends StatelessWidget {
             taskRepository: taskRepository,
           ),
         ),
-        BlocProvider<ListTaskBloc>(
-          create: (context) => ListTaskBloc(
+        BlocProvider<TaskCategoryBloc>(
+          create: (context) => TaskCategoryBloc(
             taskRepository: taskRepository,
           ),
         ),
@@ -72,13 +73,14 @@ class IgerApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.purpleAccent,
+          scaffoldBackgroundColor: IgerTheme.scaffoldColor,
           fontFamily: 'Comfortaa',
           textTheme: const TextTheme(
             headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
             headline2: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
             headline6: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
           ),
-          primarySwatch: Colors.green,
+          primarySwatch: Colors.purple,
         ),
         home: MainScreen(database: database,),
         debugShowCheckedModeBanner: false,
