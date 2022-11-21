@@ -28,11 +28,21 @@ Future<void> main() async {
   await FirebaseFirestore.instance.terminate();
   await FirebaseFirestore.instance.clearPersistence();
 
-  runApp(const App());
+  runApp( App(
+    firebaseAuth: FirebaseAuth.instance,
+    firebaseFirestore: FirebaseFirestore.instance,
+    firebaseStorage: FirebaseStorage.instance,
+    firebaseFunctions: FirebaseFunctions.instance,
+  ));
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore firebaseFirestore;
+  final FirebaseStorage firebaseStorage;
+  final FirebaseFunctions firebaseFunctions;
+
+  const App({super.key, required this.firebaseAuth, required this.firebaseFirestore, required this.firebaseStorage, required this.firebaseFunctions,});
 
   @override
   Widget build(BuildContext context) {
